@@ -89,6 +89,9 @@ INSTALLED_APPS = [
 
     # Applications
     'accounts',
+    'comments',
+    'posts',
+    'topic'
 ]
 
 SITE_ID = 1
