@@ -5,6 +5,7 @@ Topic app's serializers
 # Libraries
 ###
 from rest_framework import serializers
+from rest_auth.serializers import UserDetailsSerializer
 from ..models import Topic
 
 
@@ -13,7 +14,7 @@ from ..models import Topic
 ###
 class TopicSerializer(serializers.ModelSerializer):
     """A basic serializer for the `Topic` model."""
-    author = serializers.ReadOnlyField(source='author.username')
+    author = UserDetailsSerializer(read_only=True)
 
     class Meta:
         model = Topic
