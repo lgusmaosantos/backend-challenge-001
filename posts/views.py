@@ -1,5 +1,5 @@
 """
-Topic app's views
+Posts app's views
 """
 ###
 # Libraries

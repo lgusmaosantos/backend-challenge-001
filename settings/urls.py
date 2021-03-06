@@ -9,7 +9,8 @@ from django.contrib import admin
 from helpers.health_check_view import health_check
 from .routers import (
     main_router,
-    posts_router
+    posts_router,
+    comments_router
 )
 
 ###
@@ -24,5 +25,6 @@ urlpatterns = [
 
     # Applications
     url(r'^', include(main_router.urls)),
-    url(r'^', include(posts_router.urls))
+    url(r'^', include(posts_router.urls)),
+    url(r'^', include(comments_router.urls))
 ]
