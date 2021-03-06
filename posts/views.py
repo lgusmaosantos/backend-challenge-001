@@ -15,7 +15,7 @@ from topic.models import Topic
 # Viewsets
 ###
 class PostViewSet(ModelViewSet):
-    """A basic viewset for the `PostModel`."""
+    """A basic viewset for the `Post` model."""
     serializer_class = PostSerializer
     model = PostSerializer.Meta.model    
     filter_backends = [OrderingFilter]
