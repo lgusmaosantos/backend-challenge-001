@@ -6,8 +6,11 @@ backend-challenge-001 URL Configuration
 ###
 from django.conf.urls import url, include
 from django.contrib import admin
-
 from helpers.health_check_view import health_check
+from .routers import (
+    main_router,
+    posts_router
+)
 
 ###
 # URLs
@@ -20,6 +23,6 @@ urlpatterns = [
     url(r'health-check/$', health_check, name='health_check'),
 
     # Applications
-    url(r'^', include('accounts.urls')),
-    url(r'^', include('topic.urls'))
+    url(r'^', include(main_router.urls)),
+    url(r'^', include(posts_router.urls))
 ]
