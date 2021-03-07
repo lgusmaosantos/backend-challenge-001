@@ -5,7 +5,6 @@ Posts testing
 # Libraries
 ###
 from django.contrib.auth import get_user_model
-from django.http import response
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -312,10 +311,10 @@ class PostDeletionTestCase(APITestCase):
         response = self.client.delete(url)
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        updated_post = Post.objects.filter(
+        deleted_post = Post.objects.filter(
             id=self.post1.id,
         )
-        self.assertFalse(updated_post.exists())
+        self.assertFalse(deleted_post.exists())
 
     def test_post_deletion_unauthenticated(self):
         """Tests if an unauthenticated user is able to
@@ -331,10 +330,10 @@ class PostDeletionTestCase(APITestCase):
         response = self.client.delete(url)
 
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-        updated_post = Post.objects.filter(
+        deleted_post = Post.objects.filter(
             id=self.post1.id,
         )
-        self.assertTrue(updated_post.exists())
+        self.assertTrue(deleted_post.exists())
 
     def test_delete_post_by_another_user(self):
         """Tests if it's possible for a user to delete a post
@@ -353,7 +352,7 @@ class PostDeletionTestCase(APITestCase):
         response = self.client.delete(url)
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-        updated_post = Post.objects.filter(
+        deleted_post = Post.objects.filter(
             id=self.post1.id,
         )
-        self.assertTrue(updated_post.exists())
+        self.assertTrue(deleted_post.exists())
